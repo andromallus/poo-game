@@ -742,7 +742,7 @@
   <div class="rotate-device-overlay" id="rotateOverlay">
     <div class="rotate-icon">📱</div>
     <h3>GIRA TU TELÉFONO</h3>
-    <p>Para una mejor experiencia y poder visualizar el examen completo, juega con el móvil en posición horizontal.</p>
+    <p>Para una mejor experiencia y poder visualizar el quiz completo, juega con el móvil en posición horizontal.</p>
   </div>
 
   <div id="game-container">
@@ -764,7 +764,7 @@
             <label for="studentId">MATRÍCULA / N° CONTROL:</label>
             <input type="text" id="studentId" placeholder="Ej. 20241234" autocomplete="off" required />
           </div>
-          <button type="submit" id="startExamBtn" class="register-btn">▶ ¡COMENZAR EXAMEN!</button>
+          <button type="submit" id="startExamBtn" class="register-btn">▶ ¡COMENZAR QUIZ!</button>
           <div id="registerError" class="register-error"></div>
         </form>
       </div>
@@ -1729,186 +1729,246 @@
     }
 
     // --- Sistema Educativo POO: Preguntas, Bolas de Energía y Estado ---
-    const preguntasPOO = [
+    const preguntasProgramacion = [
       {
         id: 1,
-        pregunta: "Una clase es una plantilla para crear objetos.",
+        pregunta: "Una variable puede almacenar un valor que cambia durante la ejecución de un programa.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 2,
-        pregunta: "Un objeto es una instancia de una clase.",
-        opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
-      },
-      {
-        id: 3,
-        pregunta: "La POO se basa exclusivamente en funciones.",
+        pregunta: "Una condición if ejecuta su bloque de código únicamente cuando la condición es falsa.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: false
       },
       {
-        id: 4,
-        pregunta: "Los atributos representan características o estados de un objeto.",
+        id: 3,
+        pregunta: "Un ciclo for puede utilizarse cuando conocemos cuántas veces queremos repetir una instrucción.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
+        id: 4,
+        pregunta: "Una función siempre debe recibir al menos un parámetro para poder ejecutarse.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
         id: 5,
-        pregunta: "Los métodos definen comportamientos de los objetos.",
+        pregunta: "El operador lógico AND devuelve verdadero cuando ambas condiciones son verdaderas.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 6,
-        pregunta: "Todos los objetos de una clase deben tener los mismos valores en sus atributos.",
+        pregunta: "Un arreglo solo puede almacenar un elemento a la vez.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: false
       },
       {
         id: 7,
-        pregunta: "La encapsulación permite controlar el acceso a los datos de un objeto.",
+        pregunta: "El operador módulo (%) permite obtener el residuo de una división entera.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 8,
-        pregunta: "La herencia permite que una clase reutilice características de otra clase.",
-        opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
-      },
-      {
-        id: 9,
-        pregunta: "Una clase hija no puede agregar métodos propios.",
+        pregunta: "Un ciclo while siempre se ejecuta al menos una vez.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: false
       },
       {
-        id: 10,
-        pregunta: "El polimorfismo permite que una misma operación tenga diferentes implementaciones.",
+        id: 9,
+        pregunta: "Una función puede devolver un resultado utilizando la instrucción return.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
+        id: 10,
+        pregunta: "Los parámetros y los argumentos son exactamente lo mismo en una llamada a función.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
         id: 11,
-        pregunta: "La abstracción consiste en ocultar detalles innecesarios y mostrar lo esencial.",
+        pregunta: "Una variable local declarada dentro de una función normalmente solo puede utilizarse dentro de su ámbito.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 12,
-        pregunta: "Un constructor se utiliza normalmente para inicializar un objeto.",
+        pregunta: "La instrucción break sirve para reiniciar automáticamente un ciclo desde el principio.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
+        respuestaCorrecta: false
       },
       {
         id: 13,
-        pregunta: "Un método privado puede ser llamado directamente desde cualquier parte del programa.",
+        pregunta: "Una función puede llamar a otra función durante su ejecución.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: false
+        respuestaCorrecta: true
       },
       {
         id: 14,
-        pregunta: "La sobreescritura permite redefinir un método heredado en una clase hija.",
+        pregunta: "La instrucción continue termina completamente la ejecución de un ciclo.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
+        respuestaCorrecta: false
       },
       {
         id: 15,
-        pregunta: "La herencia y la composición son exactamente lo mismo.",
+        pregunta: "Una función recursiva es aquella que puede llamarse a sí misma.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: false
+        respuestaCorrecta: true
       },
       {
         id: 16,
-        pregunta: "La composición permite construir objetos utilizando otros objetos.",
+        pregunta: "El índice del primer elemento de un arreglo en JavaScript es 1.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
+        respuestaCorrecta: false
       },
       {
         id: 17,
-        pregunta: "Una clase abstracta siempre puede instanciarse directamente.",
+        pregunta: "Una función puede recibir varios parámetros y utilizar sus valores para realizar operaciones.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: false
+        respuestaCorrecta: true
       },
       {
         id: 18,
-        pregunta: "Una interfaz puede definir un contrato que las clases deben cumplir.",
-        opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
-      },
-      {
-        id: 19,
-        pregunta: "Los atributos estáticos pertenecen a cada instancia de forma independiente.",
+        pregunta: "En JavaScript, el operador === compara únicamente el valor e ignora el tipo de dato.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: false
       },
       {
-        id: 20,
-        pregunta: "Un método estático puede invocarse sin crear una instancia de la clase.",
+        id: 19,
+        pregunta: "Dividir un problema en funciones pequeñas puede facilitar la lectura y mantenimiento del código.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
+        id: 20,
+        pregunta: "Una función que no utiliza return siempre provoca un error al ejecutarse.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
         id: 21,
-        pregunta: "El principio de responsabilidad única establece que una clase debe tener una sola razón para cambiar.",
+        pregunta: "Una clase funciona como una plantilla para crear objetos con características y comportamientos.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 22,
-        pregunta: "El acoplamiento alto entre clases generalmente facilita el mantenimiento del software.",
+        pregunta: "Un objeto y una clase son exactamente lo mismo.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: false
       },
       {
         id: 23,
-        pregunta: "La cohesión alta significa que los elementos de una clase están relacionados con una responsabilidad clara.",
+        pregunta: "Los atributos de un objeto pueden representar características como nombre, edad o velocidad.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 24,
-        pregunta: "El principio abierto/cerrado propone que las entidades de software estén abiertas a extensión y cerradas a modificación.",
+        pregunta: "Los métodos de una clase únicamente sirven para almacenar números.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
+        respuestaCorrecta: false
       },
       {
         id: 25,
-        pregunta: "El principio de sustitución de Liskov permite reemplazar una clase base por cualquier clase hija sin importar su comportamiento.",
+        pregunta: "Dos objetos creados a partir de la misma clase pueden tener diferentes valores en sus atributos.",
         opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: false
+        respuestaCorrecta: true
       },
       {
         id: 26,
-        pregunta: "En JavaScript, la palabra clave extends permite crear una clase derivada.",
-        opciones: ["Verdadero", "Falso"],
-        respuestaCorrecta: true
-      },
-      {
-        id: 27,
-        pregunta: "En JavaScript, this siempre hace referencia al objeto global.",
+        pregunta: "Para utilizar un método de un objeto, siempre es necesario crear una nueva clase.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: false
       },
       {
-        id: 28,
-        pregunta: "En JavaScript, super permite acceder a funcionalidades de la clase padre.",
+        id: 27,
+        pregunta: "Un constructor puede utilizarse para asignar valores iniciales a los atributos de un objeto.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
+        id: 28,
+        pregunta: "Todos los métodos de una clase deben devolver obligatoriamente un número.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
         id: 29,
-        pregunta: "En JavaScript, los campos privados de una clase pueden declararse utilizando el símbolo #.",
+        pregunta: "La encapsulación permite controlar cómo se accede o modifica la información de un objeto.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
       },
       {
         id: 30,
-        pregunta: "En JavaScript, Object.create() permite crear un objeto con un prototipo especificado.",
+        pregunta: "La herencia obliga a una clase hija a eliminar todos los atributos de su clase padre.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
+        id: 31,
+        pregunta: "Un método puede modificar el valor de un atributo del objeto al que pertenece.",
         opciones: ["Verdadero", "Falso"],
         respuestaCorrecta: true
+      },
+      {
+        id: 32,
+        pregunta: "Un objeto solamente puede tener un atributo y un método.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
+        id: 33,
+        pregunta: "En JavaScript, la palabra clave this puede utilizarse para acceder a los atributos de una instancia.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: true
+      },
+      {
+        id: 34,
+        pregunta: "La palabra clave new se utiliza en JavaScript para eliminar objetos de la memoria.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
+        id: 35,
+        pregunta: "Una clase Personaje puede tener atributos como vida y velocidad, y métodos como saltar y correr.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: true
+      },
+      {
+        id: 36,
+        pregunta: "Si dos objetos pertenecen a la misma clase, modificar un atributo de uno siempre modifica automáticamente el del otro.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
+        id: 37,
+        pregunta: "La herencia permite crear una clase nueva que reutilice características de otra clase.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: true
+      },
+      {
+        id: 38,
+        pregunta: "Un método no puede recibir parámetros porque pertenece a una clase.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
+      },
+      {
+        id: 39,
+        pregunta: "Una clase puede contener varios métodos que realicen tareas diferentes.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: true
+      },
+      {
+        id: 40,
+        pregunta: "En JavaScript, la palabra clave extends se utiliza para declarar una variable local.",
+        opciones: ["Verdadero", "Falso"],
+        respuestaCorrecta: false
       }
     ];
 
@@ -1933,7 +1993,7 @@
 
     // Función para aleatorizar preguntas (Fisher-Yates)
     function shuffleQuestions() {
-      activeQuestions = preguntasPOO.map(q => ({ ...q }));
+      activeQuestions = preguntasProgramacion.map(q => ({ ...q }));
       for (let i = activeQuestions.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [activeQuestions[i], activeQuestions[j]] = [activeQuestions[j], activeQuestions[i]];
