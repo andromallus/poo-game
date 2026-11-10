@@ -2,45 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <title>Endless Runner - Prototipo</title>
+  <title>Endless Runner - POO Quiz</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      touch-action: manipulation;
     }
 
     body {
-      background: #0f1118;
-      color: #e2e8f0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      overflow: hidden;
+      min-height: -webkit-fill-available;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 
     #game-container {
       position: relative;
       width: 100%;
       max-width: 960px;
+      aspect-ratio: 16 / 9;
+      max-height: 100vh;
+      max-height: -webkit-fill-available;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 2px #2d3748;
       border-radius: 12px;
       overflow: hidden;
       background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     canvas {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: contain;
       image-rendering: pixelated;
       image-rendering: crisp-edges;
     }
@@ -225,16 +244,16 @@
     /* --- POO Quiz Retro Arcade HUD --- */
     .quiz-container {
       position: absolute;
-      top: 10px;
+      top: 6px;
       left: 50%;
       transform: translateX(-50%);
-      width: 95%;
+      width: 96%;
       max-width: 890px;
       pointer-events: none;
       z-index: 40;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 5px;
     }
 
     /* Barra Superior Retro Negra */
@@ -246,19 +265,19 @@
       border: 2px solid #ffffff;
       box-shadow: inset 0 0 0 2px #000000, 0 4px 14px rgba(0, 0, 0, 0.85);
       border-radius: 4px;
-      padding: 6px 14px;
-      height: 38px;
+      padding: 4px 12px;
+      height: 36px;
     }
 
     .hearts-box {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .pixel-heart {
-      width: 25px;
-      height: 20px;
+      width: 22px;
+      height: 18px;
       image-rendering: pixelated;
       image-rendering: crisp-edges;
       transition: opacity 0.2s, transform 0.2s;
@@ -272,12 +291,13 @@
 
     .quiz-center-title {
       font-family: 'Press Start 2P', 'Courier New', monospace;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       color: #ffffff;
       text-transform: uppercase;
       text-align: center;
+      white-space: nowrap;
     }
 
     .q-current {
@@ -286,11 +306,12 @@
 
     .quiz-score-box {
       font-family: 'Press Start 2P', 'Courier New', monospace;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       color: #ffffff;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .score-lead {
@@ -306,9 +327,9 @@
       background: #17274b;
       border: 2px solid #93c5fd;
       outline: 2px solid #2563eb;
-      outline-offset: -5px;
+      outline-offset: -4px;
       border-radius: 6px;
-      padding: 10px 18px 12px 18px;
+      padding: 8px 14px 10px 14px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
       position: relative;
       transition: border-color 0.25s, outline-color 0.25s, box-shadow 0.25s;
@@ -328,25 +349,25 @@
 
     .question-header {
       font-family: 'Press Start 2P', 'Courier New', monospace;
-      font-size: 10px;
-      letter-spacing: 1px;
+      font-size: 9px;
+      letter-spacing: 0.8px;
       color: #ffffff;
       text-transform: uppercase;
       text-align: left;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .question-body {
-      font-size: 18px;
-      line-height: 1.35;
+      font-size: 16px;
+      line-height: 1.3;
       font-weight: 700;
       color: #ffffff;
       text-align: center;
-      min-height: 44px;
+      min-height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
     }
 
@@ -354,16 +375,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 36px;
+      gap: 20px;
       font-family: 'Press Start 2P', 'Courier New', monospace;
-      font-size: 11px;
-      letter-spacing: 1px;
+      font-size: 10px;
+      letter-spacing: 0.5px;
     }
 
     .legend-option {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
     }
 
     .legend-bracket, .legend-key {
@@ -384,20 +405,146 @@
     .legend-text.green {
       color: #4ade80;
       font-weight: 800;
-      margin-left: 4px;
+      margin-left: 2px;
     }
 
     .legend-text.purple {
       color: #c084fc;
       font-weight: 800;
-      margin-left: 4px;
+      margin-left: 2px;
     }
 
     .legend-divider {
       color: #ffffff;
       font-weight: 700;
-      font-size: 11px;
+      font-size: 10px;
       text-transform: lowercase;
+    }
+
+    /* Adaptación Responsiva para Pantallas Móviles y Orientación */
+    @media (max-width: 768px), (max-height: 500px) {
+      .quiz-container {
+        top: 4px;
+        width: 98%;
+        gap: 3px;
+      }
+
+      .quiz-top-bar {
+        height: 28px;
+        padding: 2px 8px;
+      }
+
+      .hearts-box {
+        gap: 4px;
+      }
+
+      .pixel-heart {
+        width: 18px;
+        height: 14px;
+      }
+
+      .quiz-center-title {
+        font-size: 9px;
+        letter-spacing: 0.5px;
+      }
+
+      .quiz-score-box {
+        font-size: 9px;
+        letter-spacing: 0.5px;
+      }
+
+      .question-card {
+        padding: 5px 10px 7px 10px;
+        outline-offset: -3px;
+      }
+
+      .question-header {
+        font-size: 7px;
+        margin-bottom: 2px;
+      }
+
+      .question-body {
+        font-size: 13px;
+        min-height: 28px;
+        line-height: 1.25;
+        margin-bottom: 3px;
+      }
+
+      .options-legend {
+        gap: 12px;
+        font-size: 8px;
+      }
+
+      .controls-hint {
+        display: none !important; /* Ocultar el pie de controles en móviles para ganar espacio */
+      }
+
+      .sound-toggle-group {
+        top: 8px !important;
+        right: 8px !important;
+        transform: scale(0.85);
+        transform-origin: top right;
+      }
+
+      .register-card {
+        padding: 20px 22px;
+      }
+      .register-title {
+        font-size: 13px;
+      }
+      .register-desc {
+        font-size: 11px;
+        margin-bottom: 14px;
+      }
+    }
+
+    /* Mensaje overlay para sugerir girar el móvil si está en vertical */
+    .rotate-device-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.98);
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      color: #ffffff;
+    }
+
+    .rotate-device-overlay .rotate-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      animation: rotatePhoneAnim 1.8s ease-in-out infinite;
+    }
+
+    .rotate-device-overlay h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 13px;
+      color: #facc15;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .rotate-device-overlay p {
+      font-size: 13px;
+      color: #cbd5e1;
+      max-width: 320px;
+      line-height: 1.45;
+    }
+
+    @keyframes rotatePhoneAnim {
+      0%, 10% { transform: rotate(0deg); }
+      40%, 60% { transform: rotate(-90deg); }
+      90%, 100% { transform: rotate(0deg); }
+    }
+
+    /* Mostrar aviso de rotación solo cuando la pantalla esté vertical en móvil */
+    @media (orientation: portrait) and (max-width: 800px) {
+      .rotate-device-overlay {
+        display: flex;
+      }
     }
 
     .reading-progress-track {
@@ -590,6 +737,13 @@
   </style>
 </head>
 <body>
+
+  <!-- Overlay de Rotación para Móviles en Vertical -->
+  <div class="rotate-device-overlay" id="rotateOverlay">
+    <div class="rotate-icon">📱</div>
+    <h3>GIRA TU TELÉFONO</h3>
+    <p>Para una mejor experiencia y poder visualizar el examen completo, juega con el móvil en posición horizontal.</p>
+  </div>
 
   <div id="game-container">
     <canvas id="gameCanvas" width="960" height="540"></canvas>
