@@ -486,16 +486,6 @@
         transform-origin: top right;
       }
 
-      .register-card {
-        padding: 20px 22px;
-      }
-      .register-title {
-        font-size: 13px;
-      }
-      .register-desc {
-        font-size: 11px;
-        margin-bottom: 14px;
-      }
     }
 
     /* Mensaje overlay para sugerir girar el móvil si está en vertical */
@@ -565,124 +555,329 @@
       transition: width 0.1s linear;
     }
 
-    /* Overlay de Registro Inicial (Nombre y Matrícula) */
+    /* Overlay de Registro Inicial Estilo Arcade NES */
     .register-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(8, 12, 22, 0.94);
-      backdrop-filter: blur(8px);
+      background: #000000;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 100;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 24px 16px;
+      box-sizing: border-box;
+      font-family: 'Press Start 2P', monospace;
       animation: fadeInGO 0.3s ease-out;
     }
 
-    .register-card {
-      background: #000000;
-      border: 3px solid #38bdf8;
-      box-shadow: inset 0 0 0 2px #000000, 0 0 35px rgba(56, 189, 248, 0.35), 0 20px 45px rgba(0, 0, 0, 0.95);
-      border-radius: 12px;
-      padding: 30px 36px;
-      text-align: center;
-      max-width: 460px;
-      width: 90%;
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Efecto pantalla CRT / Arcade Monitor */
+    .register-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at center, transparent 65%, rgba(0, 0, 0, 0.75) 100%);
+      box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.9);
+      z-index: 1;
     }
 
-    .register-badge {
-      display: inline-block;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 5px 12px;
-      border-radius: 4px;
+    .register-overlay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
+      background-size: 100% 4px;
+      z-index: 2;
+    }
+
+    .nes-title-container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+    }
+
+    /* Top HUD: 1UP 00 y HIGH SCORE 50000 */
+    .nes-top-hud {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin-bottom: 22px;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .nes-hud-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
       letter-spacing: 1.5px;
+    }
+
+    .nes-text-red {
+      color: #ef4444;
+      text-shadow: 2px 2px #000000;
+    }
+
+    .nes-text-white {
+      color: #ffffff;
+      text-shadow: 2px 2px #000000;
+    }
+
+    .nes-text-cyan {
+      color: #22d3ee;
+      text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+    }
+
+    /* Logo RUNNER */
+    .nes-logo-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
       margin-bottom: 12px;
     }
 
-    .register-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 16px;
+    .nes-runner-logo {
+      width: 100%;
+      max-width: 440px;
+      height: auto;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.2));
+    }
+
+    .nes-subtitle {
+      font-size: 14px;
       color: #ffffff;
-      margin-bottom: 8px;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-    }
-
-    .register-desc {
-      font-size: 13px;
-      color: #94a3b8;
+      letter-spacing: 2px;
       margin-bottom: 22px;
-      line-height: 1.4;
+      text-align: center;
+      text-shadow: 2px 2px #000000;
     }
 
-    .register-field {
-      text-align: left;
+    /* Formulario */
+    .nes-form {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nes-field {
+      width: 100%;
       margin-bottom: 16px;
     }
 
-    .register-field label {
+    .nes-label {
       display: block;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
-      color: #38bdf8;
-      margin-bottom: 6px;
+      color: #22d3ee;
+      font-size: 12px;
       letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-align: left;
+      text-shadow: 1px 1px #000000;
     }
 
-    .register-field input {
-      width: 100%;
+    .nes-input-box {
+      background: #020617;
+      border: 3px solid #ffffff;
+      box-shadow: inset 0 0 0 2px #000000;
+      border-radius: 2px;
+      padding: 3px;
       box-sizing: border-box;
-      background: #0f172a;
-      border: 2px solid #334155;
-      border-radius: 6px;
-      padding: 10px 14px;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 600;
-      outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .register-field input:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+    .nes-input-box:focus-within {
+      border-color: #22d3ee;
+      box-shadow: inset 0 0 0 2px #000000, 0 0 12px rgba(34, 211, 238, 0.5);
     }
 
-    .register-btn {
+    .nes-input-box input {
       width: 100%;
-      margin-top: 8px;
-      padding: 14px 20px;
-      background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-      border: 2px solid #ffffff;
-      border-radius: 8px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
       color: #ffffff;
+      padding: 8px 10px;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nes-input-box input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
       font-family: 'Press Start 2P', monospace;
       font-size: 11px;
+    }
+
+    /* Botón ▶ ¡COMENZAR QUIZ! */
+    .nes-start-btn {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      color: #ffffff;
       letter-spacing: 1.5px;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-      transition: transform 0.15s, filter 0.15s;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.15s ease, filter 0.15s ease;
     }
 
-    .register-btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.15);
+    .nes-start-btn:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
     }
 
-    .register-btn:active {
-      transform: translateY(1px);
+    .nes-start-btn:active {
+      transform: scale(0.98);
+    }
+
+    .nes-blink-cursor {
+      display: inline-block;
+      color: #ffffff;
+      animation: nesBlink 0.8s step-start infinite;
+    }
+
+    @keyframes nesBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
 
     .register-error {
       color: #ef4444;
-      font-size: 12px;
-      font-weight: 600;
-      margin-top: 10px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      margin-top: 8px;
       min-height: 16px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Pie de página retro NES */
+    .nes-footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 9px;
+      line-height: 1.8;
+      letter-spacing: 1.2px;
+    }
+
+    .nes-footer .nes-footer-title {
+      color: #ef4444;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .nes-footer .nes-footer-text {
+      color: #ffffff;
+    }
+
+    /* Adaptaciones responsivas (Móviles horizontales y pantallas compactas) */
+    @media (max-height: 520px) {
+      .register-overlay {
+        padding: 8px 12px;
+      }
+      .nes-title-container {
+        max-width: 520px;
+      }
+      .nes-top-hud {
+        margin-bottom: 6px;
+      }
+      .nes-hud-col {
+        font-size: 10px;
+        gap: 2px;
+      }
+      .nes-runner-logo {
+        max-width: 290px;
+      }
+      .nes-logo-wrapper {
+        margin-bottom: 4px;
+      }
+      .nes-subtitle {
+        font-size: 10px;
+        margin-bottom: 8px;
+      }
+      .nes-field {
+        margin-bottom: 6px;
+      }
+      .nes-label {
+        font-size: 8px;
+        margin-bottom: 3px;
+      }
+      .nes-input-box {
+        border-width: 2px;
+      }
+      .nes-input-box input {
+        padding: 5px 8px;
+        font-size: 9px;
+      }
+      .nes-input-box input::placeholder {
+        font-size: 8px;
+      }
+      .nes-start-btn {
+        font-size: 11px;
+        margin-top: 4px;
+        margin-bottom: 2px;
+        padding: 4px 8px;
+      }
+      .nes-footer {
+        margin-top: 8px;
+        font-size: 7px;
+        line-height: 1.35;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nes-top-hud {
+        margin-bottom: 10px;
+      }
+      .nes-hud-col {
+        font-size: 11px;
+      }
+      .nes-runner-logo {
+        max-width: 270px;
+      }
+      .nes-subtitle {
+        font-size: 11px;
+        margin-bottom: 12px;
+      }
+      .nes-label {
+        font-size: 9px;
+      }
+      .nes-input-box input {
+        font-size: 9px;
+        padding: 7px;
+      }
+      .nes-input-box input::placeholder {
+        font-size: 8px;
+      }
+      .nes-start-btn {
+        font-size: 11px;
+      }
+      .nes-footer {
+        font-size: 7px;
+      }
     }
 
     .save-status-badge {
@@ -748,25 +943,54 @@
   <div id="game-container">
     <canvas id="gameCanvas" width="960" height="540"></canvas>
 
-    <!-- Overlay de Registro Inicial (Nombre y Matrícula) -->
+    <!-- Overlay de Registro Inicial Estilo Arcade NES -->
     <div id="registerOverlay" class="register-overlay">
-      <div class="register-card">
-        <div class="register-badge">🎮 EVALUACIÓN POO · RUNNER</div>
-        <div class="register-title">REGISTRO DE ALUMNO</div>
-        <div class="register-desc">Ingresa tus datos antes de comenzar la carrera. Al finalizar, tus resultados se registrarán automáticamente.</div>
-        
-        <form id="registerForm" onsubmit="return false;">
-          <div class="register-field">
-            <label for="studentName">NOMBRE COMPLETO:</label>
-            <input type="text" id="studentName" placeholder="Ej. Juan Pérez González" autocomplete="off" required />
+      <div class="nes-title-container">
+        <!-- Top HUD: 1UP 00 y HIGH SCORE 50000 -->
+        <div class="nes-top-hud">
+          <div class="nes-hud-col">
+            <span class="nes-text-red">1UP</span>
+            <span class="nes-text-white">00</span>
           </div>
-          <div class="register-field">
-            <label for="studentId">MATRÍCULA / N° CONTROL:</label>
-            <input type="text" id="studentId" placeholder="Ej. 20241234" autocomplete="off" required />
+          <div class="nes-hud-col">
+            <span class="nes-text-red">HIGH SCORE</span>
+            <span class="nes-text-white">50000</span>
           </div>
-          <button type="submit" id="startExamBtn" class="register-btn">▶ ¡COMENZAR QUIZ!</button>
+        </div>
+
+        <!-- Logo RUNNER y Subtítulo -->
+        <div class="nes-logo-wrapper">
+          <img src="sprites/runner_logo.png" alt="RUNNER" class="nes-runner-logo" />
+        </div>
+        <div class="nes-subtitle">REGISTRO DE ALUMNO</div>
+
+        <!-- Formulario de Registro -->
+        <form id="registerForm" class="nes-form" onsubmit="return false;">
+          <div class="nes-field">
+            <label class="nes-label" for="studentName">NOMBRE COMPLETO:</label>
+            <div class="nes-input-box">
+              <input type="text" id="studentName" placeholder="EJ. JUAN PEREZ GONZALEZ" autocomplete="off" required spellcheck="false" />
+            </div>
+          </div>
+          <div class="nes-field">
+            <label class="nes-label" for="studentId">MATRICULA / N° CONTROL:</label>
+            <div class="nes-input-box">
+              <input type="text" id="studentId" placeholder="EJ. 20241234" autocomplete="off" required spellcheck="false" />
+            </div>
+          </div>
+          <button type="submit" id="startExamBtn" class="nes-start-btn">
+            <span class="nes-blink-cursor">▶</span> ¡COMENZAR <span class="nes-text-cyan">QUIZ!</span>
+          </button>
           <div id="registerError" class="register-error"></div>
         </form>
+
+        <!-- Pie de Página Retro Arcade -->
+        <div class="nes-footer">
+          <div class="nes-footer-title">EVALUACIÓN POO</div>
+          <div class="nes-footer-text">© 2026 POO CORPORATION</div>
+          <div class="nes-footer-text">LICENSED BY</div>
+          <div class="nes-footer-text">NINTENDO OF AMERICA INC.</div>
+        </div>
       </div>
     </div>
 
@@ -2397,11 +2621,11 @@
     if (registerForm) {
       registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nombre = studentNameInput.value.trim();
-        const matricula = studentIdInput.value.trim();
+        const nombre = studentNameInput.value.trim().toUpperCase();
+        const matricula = studentIdInput.value.trim().toUpperCase();
 
         if (!nombre || !matricula) {
-          registerError.textContent = '⚠️ Por favor ingresa nombre y matrícula.';
+          registerError.textContent = '▶ INGRESA NOMBRE Y MATRICULA';
           return;
         }
 
@@ -2414,6 +2638,9 @@
         startBgMusic();
         loadQuestion(0);
       });
+
+      if (studentNameInput) studentNameInput.addEventListener('input', () => { registerError.textContent = ''; });
+      if (studentIdInput) studentIdInput.addEventListener('input', () => { registerError.textContent = ''; });
     }
 
     if (restartBtn) {
