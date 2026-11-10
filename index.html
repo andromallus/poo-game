@@ -1993,14 +1993,16 @@
 
       const payload = {
         nombre: studentProfile.nombre || 'Anónimo',
-        numero_de_control: studentProfile.matricula || 'N/A',
-        puntaje: quizScore,
-        total: activeQuestions.length,
-        respuestas: quizResponsesLog
+        matricula: studentProfile.matricula || 'N/A',
+        score: quizScore,
+        aciertos: correctAnswersCount,
+        total_preguntas: activeQuestions.length,
+        vidas_restantes: Math.max(0, player.hearts),
+        estado: finalState
       };
 
       try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/resultados`, {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/resultados_poo`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
