@@ -1,0 +1,7 @@
+# Dependencias y temporales
+node_modules/
+.DS_Store
+.vercel
+scratch_*
+*.log
+
