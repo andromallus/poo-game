@@ -2734,7 +2734,7 @@
 
             playWhooshSound();
             if (readingHint) {
-              readingHint.textContent = '⚡ ¡DECIDE AHORA! Salta 🟢 (Verdadero) o Bárrete 🟣 (Falso)';
+              readingHint.textContent = '⚡ ¡DECIDE AHORA! Salta 🟢 (Verdadero) o Sigue abajo 🟣 (Falso)';
               readingHint.style.color = '#facc15';
             }
           }
@@ -2825,18 +2825,15 @@
           const pBox = getPlayerHitbox();
           if (checkCollision(ob, pBox)) {
             if (!player.isGrounded) {
-              // Salto: Atrapa la bola verde de arriba (y = 275)
+              // Salto: Atrapa la bola verde de arriba (y = 275) -> VERDADERO
               if (ob.type === 'green') {
                 handleChoice(true, 'green', ob);
               }
-            } else if (player.isSliding) {
-              // Barrida: Atrapa la bola morada de abajo (y = 398)
+            } else {
+              // En el suelo (corriendo normalmente o en barrida): Atrapa la bola morada de abajo (y = 398) -> FALSO
               if (ob.type === 'purple') {
                 handleChoice(false, 'purple', ob);
               }
-            } else {
-              // Carrera erguida: Choca sin escoger
-              handleChoice(null, 'collision', ob);
             }
           }
         }
